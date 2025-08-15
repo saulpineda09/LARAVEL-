@@ -46,7 +46,7 @@ Laravel guarda en la tabla migrations un registro de todas las migraciones ya ej
 2. Permite versionar tu base de datos, ideal si trabajas en equipo.
 3. Facilita migrar cambios a producción sin perder datos.
 4. Con el mismo comando puedes deshacer migraciones si algo salió mal (php artisan migrate:rollback).
-
+----
 # CREAR UNA MIGRACION 
 Por ejemplo, si quiero crear una nueva tabla llamada ```product```
 
@@ -60,4 +60,49 @@ podemos agregar nuevos atributos a la tabla en el metodo up:
 Y para que esos cambios se actualicen en la bd tenemos que ejecutar el comando visto anteriormente:  
 ```bash
 php artisan migrate 
+```
+----
+# CREAR FOREIGN KEY CON MIGRACIONES 
+
+---- 
+# REVERTIR MIGRACIONES 
+```bash
+php artisan migrate:rollback
+```
+----
+
+
+# CREAR UN SEEDER 
+En Laravel, un Seeder sirve para insertar datos automáticamente en tu base de datos, ya sea datos de prueba (dummy data) o datos iniciales necesarios para que la aplicación funcione.
+
+Piensa en él como un script que llena la base de datos sin que tengas que escribir cada registro a mano.  
+
+```bash
+php artisan make:seeder (nobre de la tabla)
+```
+----
+# EJECUTAR TODOS LOS SEEDER
+```bash
+php artisan make:seeder
+```
+----
+# EJECUTAAR UN SOLO SEEDER 
+```bash
+php artisan db:seed --class=ProductTableSeeder
+```
+----
+# BORRAR Y RECONSTRUIR LA BD CON SEEDER 
+Esto lo que hace borrar totalmente todas las tablas y volverlas a crear con --seed 
+```bash
+php artisan migrate:fresh --seed
+```
+----
+# CREAR MODELOS 
+```bash
+php artisan make:model (nombre de la tabla) 
+```
+# CREAR UN FACTORY
+
+```bash
+php artisan make:factory (nombre del factory)
 ```
