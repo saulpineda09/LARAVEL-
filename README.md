@@ -46,3 +46,18 @@ Laravel guarda en la tabla migrations un registro de todas las migraciones ya ej
 2. Permite versionar tu base de datos, ideal si trabajas en equipo.
 3. Facilita migrar cambios a producción sin perder datos.
 4. Con el mismo comando puedes deshacer migraciones si algo salió mal (php artisan migrate:rollback).
+
+# CREAR UNA MIGRACION 
+Por ejemplo, si quiero crear una nueva tabla llamada ```product```
+
+```bash
+php artisan make:migration create_product_table
+```
+
+podemos agregar nuevos atributos a la tabla en el metodo up:  
+[![up.jpg](https://i.postimg.cc/NfKVSYrc/up.jpg)](https://postimg.cc/9rjJw6p8)  
+
+Y para que esos cambios se actualicen en la bd tenemos que ejecutar el comando visto anteriormente:  
+```bash
+php artisan migrate 
+```
