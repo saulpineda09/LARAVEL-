@@ -106,3 +106,9 @@ php artisan make:model (nombre de la tabla)
 ```bash
 php artisan make:factory (nombre del factory)
 ```
+
+# CREAR UN REQUEST 
+
+```bash
+php artisan make:request UpdateProductRequest
+```
