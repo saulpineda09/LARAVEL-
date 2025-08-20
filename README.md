@@ -26,6 +26,11 @@ Para correr el sistema y ver que funciona debemos tomar en cuenta varios factore
 - usar el puerto correspondiente (en mi caso es el 3307)
 ----
 
+# CREAR UN CONTROLADOR EN LARAVEL 
+```bash
+php artisan make:controller MiControlador
+```
+
 # EJECUTAR MIGRACIONES 
 
 ```bash
@@ -112,7 +117,7 @@ php artisan make:factory (nombre del factory)
 ```bash
 php artisan make:request UpdateProductRequest
 ```
-#MIDDLEWARE  
+# MIDDLEWARE  
 Un middleware en Laravel (y en general en frameworks web) es como un filtro o guardia que se ejecuta antes o después de que una petición llegue a tu controlador.
 
 ## Funciones principales del middleware  
