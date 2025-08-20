@@ -112,3 +112,26 @@ php artisan make:factory (nombre del factory)
 ```bash
 php artisan make:request UpdateProductRequest
 ```
+#MIDDLEWARE  
+Un middleware en Laravel (y en general en frameworks web) es como un filtro o guardia que se ejecuta antes o después de que una petición llegue a tu controlador.
+
+## Funciones principales del middleware  
+1. Autenticación y autorización
+   - Verifica si el usuario tiene un token válido.
+   - Checa si el usuario tiene permisos para acceder a un recurso.
+2. Validaciones globales
+    - Rechazar peticiones si no cumplen con ciertas reglas.  
+    ```jemplo: evitar acceso desde ciertas IPs.```
+3. Transformar la petición o respuesta
+    - Modificar headers, sanitizar datos o añadir información extra.
+    
+4. Manejo de logs
+    - Registrar cada petición (quién accede, cuándo, qué hizo).
+5. Seguridad
+     - Evitar ataques como CSRF, XSS, etc.
+     - Forzar uso de HTTPS.
+
+**El codigo para crear un Meddleware es:**  
+```bash
+ php artisan make:middleware checkValueInHeder
+```
