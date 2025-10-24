@@ -118,12 +118,13 @@ php artisan make:factory (nombre del factory)
 php artisan make:request UpdateProductRequest
 ```
 # MIDDLEWARE  
-Un middleware en Laravel (y en general en frameworks web) es como un filtro o guardia que se ejecuta antes o después de que una petición llegue a tu controlador.
+Un middleware en Laravel (y en general en frameworks web) es como un filtro o guardia que se ejecuta antes o después de que una petición llegue a tu controlador. 
+
 
 ## Funciones principales del middleware  
 1. Autenticación y autorización
    - Verifica si el usuario tiene un token válido.
-   - Checa si el usuario tiene permisos para acceder a un recurso.
+   - Checa si el usuario tiene permisos para acceder a un recurso (puedes bloquear algunos endpoints para ciertos usuarios con roles)
 2. Validaciones globales
     - Rechazar peticiones si no cumplen con ciertas reglas.  
     ```jemplo: evitar acceso desde ciertas IPs.```
@@ -178,5 +179,4 @@ class CheckRole
         return $next($request);
     }
 }
-
 ```
