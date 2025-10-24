@@ -180,3 +180,7 @@ class CheckRole
     }
 }
 ```
+y para agregarlo en el endpoing es: 
+```php
+Route::apiResource("/product", ProductController::class)->middleware([LogRequests::class]);
+```
