@@ -180,7 +180,7 @@ class CheckRole
     }
 }
 ```
-y para agregarlo en el endpoint, se le agrega -> middleware(<nombre o alias del middleware>::class): 
+y para agregarlo en el endpoint, se le agrega -> middleware("nombre o alias del middleware"::class): 
 ```php
 Route::apiResource("/product", ProductController::class)->middleware([LogRequests::class]);
 ```
