@@ -140,3 +140,43 @@ Un middleware en Laravel (y en general en frameworks web) es como un filtro o gu
 ```bash
  php artisan make:middleware checkValueInHeder
 ```
+ ## Ejemplo de middleware 
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+
+class CheckRole
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string|null  $role
+     * @return mixed
+     */
+    public function handle(Request $request, Closure $next, $role = null)
+    {
+        $user = $request->user();
+
+        // Si no hay usuario autenticado
+        if (! $user) {
+            return redirect()->route('login');
+        }
+
+        // Si el usuario no tiene el rol necesario
+        if ($role && ! $user->hasRole($role)) {
+            // Puedes devolver 403 o redireccionar
+            abort(403, 'No tienes permiso para acceder a este recurso.');
+        }
+
+        // Continuar con la petición
+        return $next($request);
+    }
+}
+
+```
