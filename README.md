@@ -1,61 +1,190 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# LARAVEL
+Laravel es un framework de desarrollo web en PHP, es decir, un conjunto de herramientas, librerías y reglas que te ayudan a crear aplicaciones web de forma más rápida, organizada y segura que si escribieras todo el código PHP desde cero.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Lo primero que se debe hacer es: 
+- instalar composer  
+Una vez instalado debemos instalar laravel de forma global para no tener ningun problema, lo hacemos con el siguiente comando:
 
-## About Laravel
+```bash
+composer  global require laravel/installer
+```
+----
+# CREAR UN PROYECTO POR TERMINAL 
+```bash
+Laravel new <name_proyect>
+```
+----
+# CORRER UN SERVIDOR PHP POR CONSOLA 
+```bash
+php -S localhost:8080 -t public 
+```
+----
+Para correr el sistema y ver que funciona debemos tomar en cuenta varios factores:  
+- Tener encendido xamp
+- revisar el archivo .env que esta en la raiz del proyecto que creaste
+- crear la BD en phpmyAdmin con el mismo nombre que viene en ese archivo en la parte de BD
+- usar el puerto correspondiente (en mi caso es el 3307)
+----
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# CREAR UN CONTROLADOR EN LARAVEL 
+```bash
+php artisan make:controller MiControlador
+```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# EJECUTAR MIGRACIONES 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```bash
+php artisan migrate 
+```
+Es una herramienta de Laravel para crear las tablas de la base de datos automáticamente según lo que hayas definido en tus archivos de migraciones.
 
-## Learning Laravel
+## ¿Qué hace? 
+1. **Busca las migraciones**   
+Laravel guarda en la carpeta database/migrations archivos que definen cómo deben crearse las tablas (usuarios, sesiones, posts, etc.).
+2. **Ejecuta esas instrucciones en la base de datos**  
+Crea las tablas con sus columnas, tipos de datos, índices y relaciones
+3. **Lleva un control de qué migraciones se han aplicado**  
+Laravel guarda en la tabla migrations un registro de todas las migraciones ya ejecutadas para no repetirlas.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ¿Para que sirve? 
+1. Evita escribir SQL a mano cada vez que creas una tabla.
+2. Permite versionar tu base de datos, ideal si trabajas en equipo.
+3. Facilita migrar cambios a producción sin perder datos.
+4. Con el mismo comando puedes deshacer migraciones si algo salió mal (php artisan migrate:rollback).
+----
+# CREAR UNA MIGRACION 
+Por ejemplo, si quiero crear una nueva tabla llamada ```product```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+php artisan make:migration create_product_table
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+podemos agregar nuevos atributos a la tabla en el metodo up:  
+[![up.jpg](https://i.postimg.cc/NfKVSYrc/up.jpg)](https://postimg.cc/9rjJw6p8)  
 
-## Laravel Sponsors
+Y para que esos cambios se actualicen en la bd tenemos que ejecutar el comando visto anteriormente:  
+```bash
+php artisan migrate 
+```
+----
+# CREAR FOREIGN KEY CON MIGRACIONES 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---- 
+# REVERTIR MIGRACIONES 
+```bash
+php artisan migrate:rollback
+```
+----
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# CREAR UN SEEDER 
+En Laravel, un Seeder sirve para insertar datos automáticamente en tu base de datos, ya sea datos de prueba (dummy data) o datos iniciales necesarios para que la aplicación funcione.
 
-## Contributing
+Piensa en él como un script que llena la base de datos sin que tengas que escribir cada registro a mano.  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan make:seeder (nobre de la tabla)
+```
+----
+# EJECUTAR TODOS LOS SEEDER
+```bash
+php artisan make:seeder
+```
+----
+# EJECUTAAR UN SOLO SEEDER 
+```bash
+php artisan db:seed --class=ProductTableSeeder
+```
+----
+# BORRAR Y RECONSTRUIR LA BD CON SEEDER 
+Esto lo que hace borrar totalmente todas las tablas y volverlas a crear con --seed 
+```bash
+php artisan migrate:fresh --seed
+```
+----
+# CREAR MODELOS 
+```bash
+php artisan make:model (nombre de la tabla) 
+```
+# CREAR UN FACTORY
 
-## Code of Conduct
+```bash
+php artisan make:factory (nombre del factory)
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# CREAR UN REQUEST 
 
-## Security Vulnerabilities
+```bash
+php artisan make:request UpdateProductRequest
+```
+# MIDDLEWARE  
+Un middleware en Laravel (y en general en frameworks web) es como un filtro o guardia que se ejecuta antes o después de que una petición llegue a tu controlador. 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+## Funciones principales del middleware  
+1. Autenticación y autorización
+   - Verifica si el usuario tiene un token válido.
+   - Checa si el usuario tiene permisos para acceder a un recurso (puedes bloquear algunos endpoints para ciertos usuarios con roles)
+2. Validaciones globales
+    - Rechazar peticiones si no cumplen con ciertas reglas.  
+    ```jemplo: evitar acceso desde ciertas IPs.```
+3. Transformar la petición o respuesta
+    - Modificar headers, sanitizar datos o añadir información extra.
+    
+4. Manejo de logs
+    - Registrar cada petición (quién accede, cuándo, qué hizo).
+5. Seguridad
+     - Evitar ataques como CSRF, XSS, etc.
+     - Forzar uso de HTTPS.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**El codigo para crear un Meddleware es:**  
+```bash
+ php artisan make:middleware checkValueInHeder
+```
+ ## Ejemplo de middleware 
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+
+class CheckRole
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string|null  $role
+     * @return mixed
+     */
+    public function handle(Request $request, Closure $next, $role = null)
+    {
+        $user = $request->user();
+
+        // Si no hay usuario autenticado
+        if (! $user) {
+            return redirect()->route('login');
+        }
+
+        // Si el usuario no tiene el rol necesario
+        if ($role && ! $user->hasRole($role)) {
+            // Puedes devolver 403 o redireccionar
+            abort(403, 'No tienes permiso para acceder a este recurso.');
+        }
+
+        // Continuar con la petición
+        return $next($request);
+    }
+}
+```
+y para agregarlo en el endpoint, se le agrega -> middleware("nombre o alias del middleware"::class): 
+```php
+Route::apiResource("/product", ProductController::class)->middleware([LogRequests::class]);
+```
+# EJECUTAR COLAS 
+```
+php artisan queue:work
+```
