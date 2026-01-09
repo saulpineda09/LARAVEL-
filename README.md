@@ -184,3 +184,7 @@ y para agregarlo en el endpoint, se le agrega -> middleware("nombre o alias del 
 ```php
 Route::apiResource("/product", ProductController::class)->middleware([LogRequests::class]);
 ```
+# EJECUTAR COLAS 
+```
+php artisan queue:work
+```
