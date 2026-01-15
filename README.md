@@ -189,12 +189,12 @@ Route::apiResource("/product", ProductController::class)->middleware([LogRequest
 php artisan queue:work
 ```
 
-#Crear un nuevo comando 
+# Crear un nuevo comando 
 ```
 php artisan make:command <nombre de  mi comando>
 ```
 
-#Mostrar todos los comandos  
+# Mostrar todos los comandos  
 ```
 php artisan list 
 ```
