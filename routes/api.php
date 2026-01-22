@@ -50,10 +50,11 @@ Route::get("/query/method/groupby",[QueriesController::class, "groupBy"]);
 //metodos para get => index
 //post => create
 //put =>
-Route::apiResource("/product", ProductController::class)->middleware(["jwt.auth",LogRequests::class]); //podemos poner varios middleware en un endpoint  
+Route::apiResource("/product", ProductController::class);
+//->middleware(["jwt.auth",LogRequests::class]);// comentamos por un momento el middleware para probar los tests  
+
+//podemos poner varios middleware en un endpoint  
 //el middleware solo va funcionar para este metodo pero ahora necesitamos estar logeados para acceder a los productos 
-
-
 
 
 //rutas para el registro y el login de usuarios
