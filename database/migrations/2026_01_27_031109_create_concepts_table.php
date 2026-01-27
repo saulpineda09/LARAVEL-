@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('concepts', function (Blueprint $table) {
+        Schema::create('concept', function (Blueprint $table) {
             $table->id();
+            $table->integer('quantity');
+            $table->decimal ('price', 10, 2);
+            $table->unsignedBigInteger('product_id')->nullable();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('set null');
+
             $table->timestamps();
         });
     }
@@ -22,6 +27,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('concepts');
+
+        Schema::table("concept", function(Blueprint $table){
+            $table->dropForeign(['product_id']);
+        });
+        Schema::dropIfExists('concept');
     }
 };
