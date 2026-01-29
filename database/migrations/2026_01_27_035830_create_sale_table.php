@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('sale', function (Blueprint $table) {
             $table->id();
-
+            $table ->decimal('total', 10, 2);
+            $table ->timestamp('sale_date')->useCurrent();
+            $table ->string('email');
+            $table ->softDeletes(); // Para eliminar registros sin borrarlos físicamente
             $table->timestamps();
         });
     }
